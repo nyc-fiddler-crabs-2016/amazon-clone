@@ -1,0 +1,7 @@
+  <%= form_for [@order] do |f| %>
+
+  <%= f.label :pick an address %>:
+  <%= f.select :rating, @addresses.each {|address| print [address], [address.id]} %>
+
+  <%= f.submit value= "Pick addreess" %>
+<% end %>

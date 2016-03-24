@@ -1,0 +1,7 @@
+  <%= form_for [@order] do |f| %>
+
+  <%= f.label :pick_address %>:
+  <%= f.collection_select :address_id, @addresses, :id, :street   %>
+
+  <%= f.submit value= "Pick address" %>
+<% end %>

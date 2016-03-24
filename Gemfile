@@ -45,5 +45,7 @@ group :development do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'table_print'
+  gem 'pry'
 end
 

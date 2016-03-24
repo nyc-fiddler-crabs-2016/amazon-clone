@@ -1,0 +1,14 @@
+Welcome, <%=@user.username%>
+
+<h2>Here are your past orders</h2>
+
+<%@user.orders.where(shopped_now:false).each do |order|%>
+<ul>
+<li><%=order.created_at%><li>
+    <%order.items.each do |item|%>
+  <ul>
+    <li><%=item.name%></li>
+  </ul>
+  <%end%>
+</ul>
+<%end%>

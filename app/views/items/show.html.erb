@@ -1,0 +1,34 @@
+<%=@item.name%>
+Description:
+<br>
+<%=@item.description%>
+<br>
+
+<%=flash[:notice] if flash.any?%>
+
+<%=link_to "Add to Cart!", order_item_path(current_user.orders.find_by(shopped_now:true), @item), :method => :put%>
+
+
+ <%@item.reviews.each do |review|%>
+  <ul>
+    <li>Reviewed <%=review.created_at%> by <%=review.rater.username%>
+      <li>Rating: <%=review.rating%>
+       <li>Review: <%= review.body%>
+  </ul>
+  <%end%>
+
+
+  <br>
+  <%= form_for [@item.category, @item, @item.reviews.build] do |f| %>
+
+<br>
+  <%= f.label :rating %>:
+  <%= f.select :rating, [['1','1'],['2','2'],['3','3'],['4','4'],['5','5']] %>
+
+  <%= f.label :body %>:
+  <%= f.text_field :body, :cols => "30", :rows => "10" %><br />
+
+  <%= f.submit value= "Review" %>
+<% end %>
+
+

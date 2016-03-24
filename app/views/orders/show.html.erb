@@ -1,0 +1,15 @@
+<%if @order.items.empty? || !@order.shopped_now%>
+<h3> Cart is empty. Start shopping! </h3>
+<%else%>
+<%= flash[:notice] if !flash.empty?%>
+<%@order.items.each do |item|%>
+<ul>
+<li>item.name</li>
+<ul>
+<li>$<%=item.price%></li>
+</ul>
+</ul>
+<%end%>
+<%end%>
+
+<%=link_to "Choose Shipping Details", edit_order_path(@order) %>

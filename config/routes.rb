@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  resources :sessions, :only => [:new, :create, :destroy]
+  resources :categories, :only => [:index, :show] do
+    resources :items, :only => [:show] do
+      resources :reviews
+    end
+  end
+
+  resources :orders do
+      resources :addresses
+      resources :items, :only => [:update]
+    end
+
+  resources :users
+  root 'categories#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
