@@ -1,0 +1,11 @@
+
+
+<%=@category.name%>
+
+<%@category.items.each do |item|%>
+<ul>
+  <li><%=link_to item.name, category_item_path(@category, item)%></li>
+  <li>$<%=item.price%></li>
+
+</ul>
+<%end%>

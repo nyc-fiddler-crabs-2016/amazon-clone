@@ -8,6 +8,25 @@
 </head>
 <body>
 
+  <h1>Drewmazon</h1>
+  <nav>
+    <%=link_to "Home", root_path%>
+
+    <%if logged_in?%>
+    <%=link_to "Sign out", session_path(session[:user_id]), method: :delete%>
+    <%=link_to current_user.username, user_path(current_user.id)%>
+    <%if !!Order.find_by(shopped_now:true)%>
+    <%=link_to "Cart", order_path(Order.find_by(shopped_now:true).id)%>
+    <%else%>
+    <%=link_to "Cart", order_path(Order.find(1).id)%>
+    <%end%>
+
+    <%else%>
+    <%=link_to "Log in", new_session_path%>
+    <%=link_to "Sign up", new_user_path%>
+    <%end%>
+  </nav>
+
 <%= yield %>
 
 </body>
